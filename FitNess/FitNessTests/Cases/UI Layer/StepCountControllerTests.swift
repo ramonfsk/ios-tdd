@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,16 +30,44 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import XCTest
+@testable import FitNess
 
-internal class AppModel {
-  static let instance = AppModel()
+final class StepCountControllerTests: XCTestCase {
+  var sut: StepCountController!
+  
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = StepCountController()
+  }
 
-  public var appState: AppState = .notStarted
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
+  }
   
-  public init() {}
+  // MARK: - Initial State
+  func testController_whenCreated_buttonLabelIsStart() {
+    // given
+    sut.viewDidLoad()
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
+  }
   
-  public func start() {
-    appState = .inProgress
+  // MARK: - In Progress
+  func testController_whenStartTapped_appIsInProgress() {
+    // when
+    sut.startStopPause(nil)
+    // then
+    let state = AppModel.instance.appState
+    XCTAssertEqual(state, AppState.inProgress)
+  }
+  
+  func testController_whenStartTapped_buttonLabelIsPause() {
+    // when
+    sut.startStopPause(nil)
+    // then
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
 }
