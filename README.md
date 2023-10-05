@@ -6,4 +6,4 @@ This material content my entire study codes about TDD in iOS by [iOS Test-Driven
 - TDD App Setup using XCTest
 - Test Expressions & Expectations
 - Asynchronous Tests
-- Dependendy Injection & Mocks
+- Dependency Injection & Mocks
