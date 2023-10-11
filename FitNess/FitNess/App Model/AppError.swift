@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,18 +32,6 @@
 
 import Foundation
 
-internal class AppModel {
-  static let instance = AppModel()
-
-  public var appState: AppState = .notStarted
-  let dataModel = DataModel()
-  
-  public init() {}
-  
-  public func start() throws {
-    guard dataModel.goal != nil else {
-      throw AppError.goalNotSet
-    }
-    appState = .inProgress
-  }
+enum AppError: Error {
+  case goalNotSet
 }

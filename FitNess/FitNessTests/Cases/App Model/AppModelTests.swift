@@ -52,8 +52,12 @@ final class AppModelTests: XCTestCase {
   }
   
   func testAppModel_whenStarted_isInProgressState() {
-    sut.start()
+    try? sut.start()
     let observedState = sut.appState
     XCTAssertEqual(observedState, .inProgress)
+  }
+  
+  func testModelWithNoGoal_whenStarted_throwsError() {
+    XCTAssertThrowsError(try sut.start())
   }
 }
