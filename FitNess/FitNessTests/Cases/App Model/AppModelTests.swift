@@ -46,12 +46,26 @@ final class AppModelTests: XCTestCase {
     try super.tearDownWithError()
   }
   
+  // MARK: - Given
+  func givenGoalSet() {
+    sut.dataModel.goal = 1000
+  }
+  
+  func givenInProgress() {
+    givenGoalSet()
+    try! sut.start()
+  }
+  
+  // MARK: - Lifecycle
   func testAppModel_whenInitialized_isInNotStartedState() {
     let initialState = sut.appState
     XCTAssertEqual(initialState, AppState.notStarted)
   }
   
+  // MARK: - Start
   func testAppModel_whenStarted_isInProgressState() {
+    // given
+    givenGoalSet()
     try? sut.start()
     let observedState = sut.appState
     XCTAssertEqual(observedState, .inProgress)
@@ -59,5 +73,21 @@ final class AppModelTests: XCTestCase {
   
   func testModelWithNoGoal_whenStarted_throwsError() {
     XCTAssertThrowsError(try sut.start())
+  }
+  
+  func testStart_withGoalSet_doesNotThrow() {
+    // given
+    givenGoalSet()
+    // then
+    XCTAssertNoThrow(try sut.start())
+  }
+  // MARK: - Restart
+  func testAppModel_whenReset_isInNotStartedState() {
+    // given
+    givenInProgress()
+    // when
+    sut.restart()
+    // then
+    XCTAssertEqual(sut.appState, .notStarted)
   }
 }

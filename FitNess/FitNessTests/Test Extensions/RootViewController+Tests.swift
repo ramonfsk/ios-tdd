@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,24 +30,11 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import UIKit
+@testable import FitNess
 
-internal class AppModel {
-  static let instance = AppModel()
-
-  var appState: AppState = .notStarted
-  let dataModel = DataModel()
-  
-  init() {}
-  
-  func start() throws {
-    guard dataModel.goal != nil else {
-      throw AppError.goalNotSet
-    }
-    appState = .inProgress
-  }
-  
-  func restart() {
-    appState = .notStarted
+extension RootViewController {
+  var stepController: StepCountController {
+    return children.first { $0 is StepCountController } as! StepCountController
   }
 }
