@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "70E34AD0-2F5A-4DA2-8246-E1B006D71663",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:FitNess.xcodeproj",
+      "identifier" : "185CB1F723C78CE6009F7571",
+      "name" : "FitNess"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:FitNess.xcodeproj",
+        "identifier" : "2C841CD62ACB9D05000F8A52",
+        "name" : "FitNessTests"
+      }
+    }
+  ],
+  "version" : 1
+}

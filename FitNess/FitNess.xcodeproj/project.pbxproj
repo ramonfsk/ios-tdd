@@ -48,6 +48,7 @@
 		2C8006652AD61C6F004C8BFF /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2C8006682AD6C0BE004C8BFF /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		2C80066B2AD6C196004C8BFF /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
+		2C80066D2AD6CB81004C8BFF /* FitNess.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FitNess.xctestplan; sourceTree = "<group>"; };
 		2C841CD72ACB9D05000F8A52 /* FitNessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C841CEC2ACC4644000F8A52 /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		2C841CEE2ACCD944000F8A52 /* StepCountControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountControllerTests.swift; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 		2C841CD82ACB9D05000F8A52 /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
+				2C80066D2AD6CB81004C8BFF /* FitNess.xctestplan */,
 				2C841CF02ACCD980000F8A52 /* Cases */,
 				2C8006672AD6C0A8004C8BFF /* Test Classes */,
 				2C80066A2AD6C175004C8BFF /* Test Extensions */,
