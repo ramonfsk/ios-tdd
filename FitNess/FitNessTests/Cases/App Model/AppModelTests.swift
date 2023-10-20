@@ -90,4 +90,13 @@ final class AppModelTests: XCTestCase {
     // then
     XCTAssertEqual(sut.appState, .notStarted)
   }
+  
+  func testAppModel_whenReset_dataModelGoalIsNil() {
+    // given
+    givenInProgress()
+    // when
+    sut.restart()
+    // then
+    XCTAssertNil(sut.dataModel.goal)
+  }
 }

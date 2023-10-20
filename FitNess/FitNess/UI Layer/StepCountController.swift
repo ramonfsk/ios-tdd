@@ -74,7 +74,11 @@ class StepCountController: UIViewController {
   // MARK: - IBActions
   @IBAction func startStopPause(_ sender: Any?) {
     do {
-      try AppModel.instance.start()
+      if AppModel.instance.appState == .inProgress {
+        try AppModel.instance.pause()
+      } else {
+        try AppModel.instance.start()
+      }
     } catch {
       showNeedGoalAlert()
     }

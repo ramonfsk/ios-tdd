@@ -47,7 +47,12 @@ internal class AppModel {
     appState = .inProgress
   }
   
+  func pause() throws {
+    appState = .paused
+  }
+  
   func restart() {
+    dataModel.goal = nil
     appState = .notStarted
   }
 }
