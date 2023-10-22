@@ -38,8 +38,6 @@ internal class AppModel {
   var appState: AppState = .notStarted
   let dataModel = DataModel()
   
-  init() {}
-  
   func start() throws {
     guard dataModel.goal != nil else {
       throw AppError.goalNotSet
@@ -47,12 +45,28 @@ internal class AppModel {
     appState = .inProgress
   }
   
-  func pause() throws {
+  func pause() {
     appState = .paused
   }
   
   func restart() {
-    dataModel.goal = nil
     appState = .notStarted
+    dataModel.restart()
+  }
+  
+  func setCaught() throws {
+    guard dataModel.caught else {
+      throw AppError.invalidState
+    }
+
+    appState = .caught
+  }
+
+  func setCompleted() throws {
+    guard dataModel.goalReached else {
+      throw AppError.invalidState
+    }
+
+    appState = .completed
   }
 }

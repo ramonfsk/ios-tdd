@@ -31,31 +31,18 @@
 /// THE SOFTWARE.
 
 import Foundation
+@testable import FitNess
 
-class DataModel {
-  var goalReached: Bool {
-    if let goal = goal,
-       steps >= goal, !caught {
-      return true
-    }
-    return false
+extension DataModel {
+  func setToComplete() {
+    goal = 100
+    steps = 100
+    distance = 1
   }
-  var goal: Int?
-  var steps: Int = 0
-  
-  // MARK: - Nessie
-  let nessie = Nessie()
-  var distance: Double = 0
-  
-  var caught: Bool {
-    return distance > 0 && nessie.distance >= distance
-  }
-  
-  // MARK: - Lifecycle
-  func restart() {
-    goal = nil
-    steps = 0
-    distance = 0
-    nessie.distance = 0
+
+  func setToCaught() {
+    goal = 1000
+    distance = 1
+    nessie.distance = 10
   }
 }
