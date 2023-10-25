@@ -21,6 +21,10 @@
 		2C841D252ACDB793000F8A52 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C841D242ACDB793000F8A52 /* DataModelTests.swift */; };
 		2C8BB2812AE2A9D7002DD850 /* AppModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8BB2802AE2A9D7002DD850 /* AppModel+Tests.swift */; };
 		2C8BB2832AE2A9E8002DD850 /* DataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8BB2822AE2A9E8002DD850 /* DataModel+Tests.swift */; };
+		2C8BB2862AE9375F002DD850 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8BB2852AE9375F002DD850 /* Alert.swift */; };
+		2C8BB2882AE93816002DD850 /* AlertCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8BB2872AE93816002DD850 /* AlertCenter.swift */; };
+		2C8BB28A2AE938B8002DD850 /* AlertNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8BB2892AE938B8002DD850 /* AlertNotification.swift */; };
+		2C8BB28C2AE9393E002DD850 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8BB28B2AE9393E002DD850 /* AlertViewController.swift */; };
 		2CB5FC062ADF5BDD00222B49 /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5FC052ADF5BDD00222B49 /* Nessie.swift */; };
 		4CBCDEB32701423C00E8992C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEB22701423C00E8992C /* RootViewController.swift */; };
 		4CBCDEB52701425C00E8992C /* ChaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCDEB42701425C00E8992C /* ChaseView.swift */; };
@@ -58,6 +62,10 @@
 		2C841D242ACDB793000F8A52 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
 		2C8BB2802AE2A9D7002DD850 /* AppModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Tests.swift"; sourceTree = "<group>"; };
 		2C8BB2822AE2A9E8002DD850 /* DataModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Tests.swift"; sourceTree = "<group>"; };
+		2C8BB2852AE9375F002DD850 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		2C8BB2872AE93816002DD850 /* AlertCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCenter.swift; sourceTree = "<group>"; };
+		2C8BB2892AE938B8002DD850 /* AlertNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotification.swift; sourceTree = "<group>"; };
+		2C8BB28B2AE9393E002DD850 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		2CB5FC052ADF5BDD00222B49 /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
 		4CBCDEB22701423C00E8992C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4CBCDEB42701425C00E8992C /* ChaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseView.swift; sourceTree = "<group>"; };
@@ -112,6 +120,7 @@
 				4CBCDEBA2701429900E8992C /* Assets & Info */,
 				2C8006622AD61C18004C8BFF /* Data Model */,
 				4CBCDEB92701428100E8992C /* UI Layer */,
+				2C8BB2842AE9372D002DD850 /* Alerts */,
 				185CB20923C78CE8009F7571 /* Info.plist */,
 			);
 			path = FitNess;
@@ -203,6 +212,17 @@
 				2C8BB2822AE2A9E8002DD850 /* DataModel+Tests.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		2C8BB2842AE9372D002DD850 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				2C8BB2852AE9375F002DD850 /* Alert.swift */,
+				2C8BB2872AE93816002DD850 /* AlertCenter.swift */,
+				2C8BB2892AE938B8002DD850 /* AlertNotification.swift */,
+				2C8BB28B2AE9393E002DD850 /* AlertViewController.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		4CBCDEB82701427500E8992C /* App Layer */ = {
@@ -370,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CBCDEBE270142EE00E8992C /* AppModel.swift in Sources */,
+				2C8BB28C2AE9393E002DD850 /* AlertViewController.swift in Sources */,
 				185CB1FC23C78CE6009F7571 /* AppDelegate.swift in Sources */,
 				2C8006662AD61C6F004C8BFF /* AppError.swift in Sources */,
 				4CBCDEB52701425C00E8992C /* ChaseView.swift in Sources */,
@@ -377,6 +398,9 @@
 				4CBCDEB72701426800E8992C /* StepCountController.swift in Sources */,
 				4CBCDEBC270142DF00E8992C /* AppState.swift in Sources */,
 				185CB1FE23C78CE6009F7571 /* SceneDelegate.swift in Sources */,
+				2C8BB2862AE9375F002DD850 /* Alert.swift in Sources */,
+				2C8BB28A2AE938B8002DD850 /* AlertNotification.swift in Sources */,
+				2C8BB2882AE93816002DD850 /* AlertCenter.swift in Sources */,
 				4CBCDEB32701423C00E8992C /* RootViewController.swift in Sources */,
 				2C8006642AD61C2A004C8BFF /* DataModel.swift in Sources */,
 			);

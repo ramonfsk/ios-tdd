@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19158" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ErE-ck-eZ2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ErE-ck-eZ2">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19141"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Alert View Controller-->
         <scene sceneID="ojl-bB-v0o">
             <objects>
-                <viewController id="SXZ-rn-BAu" sceneMemberID="viewController">
+                <viewController id="SXZ-rn-BAu" customClass="AlertViewController" customModule="FitNess" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="VRK-Q6-tFG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgG-PF-OKb">
-                                <rect key="frame" x="8" y="44" width="367" height="76"/>
+                                <rect key="frame" x="8" y="50" width="367" height="36"/>
                                 <color key="backgroundColor" name="DefaultAlertColor"/>
                             </view>
                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJT-ew-sP8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3S-UF-F0a">
-                                        <rect key="frame" x="343" y="48" width="24" height="24"/>
+                                        <rect key="frame" x="343" y="54" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="hZi-fZ-aHA"/>
                                             <constraint firstAttribute="height" constant="24" id="tgB-2D-auc"/>
                                         </constraints>
                                         <state key="normal" image="CloseButton"/>
+                                        <connections>
+                                            <action selector="closeAlert:" destination="SXZ-rn-BAu" eventType="touchUpInside" id="KRK-O5-uqy"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="This is an alert." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGq-eD-AEF">
-                                        <rect key="frame" x="8" y="72" width="359" height="20.333333333333329"/>
+                                        <rect key="frame" x="8" y="78" width="359" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -63,6 +66,13 @@
                             <constraint firstItem="rgG-PF-OKb" firstAttribute="leading" secondItem="wFF-Da-Mds" secondAttribute="leading" constant="8" id="vvg-a9-iok"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="alertLabel" destination="tGq-eD-AEF" id="E8u-kp-WAB"/>
+                        <outlet property="mainAlertView" destination="oJT-ew-sP8" id="ZnJ-I1-wpw"/>
+                        <outlet property="mainBottom" destination="vMQ-nc-FNK" id="Yrv-VF-Eoc"/>
+                        <outlet property="mainTrailling" destination="a3b-S8-zMJ" id="Fqp-1Q-TiZ"/>
+                        <outlet property="secondaryAlertView" destination="rgG-PF-OKb" id="bTj-xl-Rvf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uiW-GY-Zaq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,13 +87,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbf-CD-eev">
-                                <rect key="frame" x="102" y="164" width="171" height="45"/>
+                                <rect key="frame" x="102" y="170" width="171" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pry-q7-Vs4">
-                                <rect key="frame" x="165.66666666666666" y="215" width="44" height="21"/>
+                                <rect key="frame" x="165.66666666666666" y="221" width="44" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
