@@ -30,22 +30,43 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import XCTest
+@testable import FitNess
 
-class AlertCenter {
-  static var instance = AlertCenter()
-  
-  let notificationCenter: NotificationCenter
-  
-  init(center: NotificationCenter = .default) {
-    self.notificationCenter = center
+class AlertCenterTests: XCTestCase {
+  var sut: AlertCenter!
+
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = AlertCenter()
+  }
+
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
   }
   
-  func postAlert(alert: Alert) {
-    let notification = Notification(name: AlertNotification.name, object: self)
-    notificationCenter.post(notification)
+  func testPostOne_generatesANotification() {
+    // given
+    let exp = expectation(forNotification: AlertNotification.name,
+                          object: sut)
+    let alert = Alert("this is an alert")
+    // when
+    sut.postAlert(alert: alert)
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func testPostingTwoAlerts_generatesTwoNotifications() {
+    // given
+    let exp = expectation(forNotification: AlertNotification.name, object: sut)
+    exp.expectedFulfillmentCount = 2
+    let alert1 = Alert("this is the first alert")
+    let alert2 = Alert("this is the second alert")
+    // when
+    sut.postAlert(alert: alert1)
+    sut.postAlert(alert: alert2)
+    // then
+    wait(for: [exp], timeout: 1)
   }
 }
-
-// MARK: - Class Helpers
-extension AlertCenter {}

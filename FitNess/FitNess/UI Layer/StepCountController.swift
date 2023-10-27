@@ -69,19 +69,16 @@ class StepCountController: UIViewController {
     super.viewDidLoad()
     
     updateButton()
+    
+    AppModel.instance.stateChangedCallback = { model in
+      DispatchQueue.main.async {
+        self.updateUI()
+      }
+    }
   }
   
   // MARK: - IBActions
   @IBAction func startStopPause(_ sender: Any?) {
-//    do {
-//      if AppModel.instance.appState == .inProgress {
-//        AppModel.instance.pause()
-//      } else {
-//        try AppModel.instance.start()
-//      }
-//    } catch {
-//      showNeedGoalAlert()
-//    }
     switch AppModel.instance.appState {
     case .notStarted:
       start()

@@ -30,22 +30,19 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import XCTest
 
-class AlertCenter {
-  static var instance = AlertCenter()
+class ButtonObserver {
+  var token: NSKeyValueObservation?
   
-  let notificationCenter: NotificationCenter
-  
-  init(center: NotificationCenter = .default) {
-    self.notificationCenter = center
+  func observe(_ button: UIButton, expectation: XCTestExpectation) {
+    token = button
+      .observe(\.titleLabel?.text, options: [.new]) { _, _ in
+        expectation.fulfill()
+      }
   }
   
-  func postAlert(alert: Alert) {
-    let notification = Notification(name: AlertNotification.name, object: self)
-    notificationCenter.post(notification)
+  deinit {
+    token?.invalidate()
   }
 }
-
-// MARK: - Class Helpers
-extension AlertCenter {}
