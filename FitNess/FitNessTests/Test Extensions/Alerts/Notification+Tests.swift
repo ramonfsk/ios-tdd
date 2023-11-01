@@ -30,19 +30,11 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import XCTest
+import Foundation
+@testable import FitNess
 
-class ButtonObserver {
-  var token: NSKeyValueObservation?
-  
-  func observe(_ button: UIButton, expectation: XCTestExpectation) {
-    token = button
-      .observe(\.titleLabel?.text, options: [.new]) { _, _ in
-        expectation.fulfill()
-      }
-  }
-  
-  deinit {
-    token?.invalidate()
+extension Notification {
+  var alert: Alert? {
+    return userInfo?[AlertNotification.Keys.alert] as? Alert
   }
 }

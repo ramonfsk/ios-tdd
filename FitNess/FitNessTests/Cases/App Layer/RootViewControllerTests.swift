@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,22 +30,38 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
+import XCTest
+@testable import FitNess
 
-class RootViewController: UIViewController {
-  @IBOutlet weak var alertHeight: NSLayoutConstraint!
-  @IBOutlet weak var alertContainer: UIView!
+final class RootViewControllerTests: XCTestCase {
+  var sut: RootViewController!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    reset()
-    AlertCenter.listenForAlerts { center in
-      self.alertContainer.isHidden = center.alertCount == 0
-    }
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = getRootViewController()
+    sut.reset()
   }
   
-  func reset() {
-    alertContainer.isHidden = true
+  override func tearDownWithError() throws {
+    AlertCenter.instance.clearAlerts()
+    sut = nil
+    try super.tearDownWithError()
+  }
+  
+  // MARK: - Alert Container
+  func testWhenLoaded_noAlertsAreShown() {
+    XCTAssertTrue(sut.alertContainer.isHidden)
+  }
+  
+  func testWhenAlertsPosted_alertContainerIsShown() {
+    // given
+    let exp = expectation(forNotification: AlertNotification.name,
+                          object: nil)
+    let alert = Alert("show the container")
+    // when
+    AlertCenter.instance.postAlert(alert: alert)
+    // then
+    wait(for: [exp], timeout: 1)
+    XCTAssertFalse(sut.alertContainer.isHidden)
   }
 }
