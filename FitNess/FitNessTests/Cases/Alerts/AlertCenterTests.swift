@@ -47,6 +47,58 @@ class AlertCenterTests: XCTestCase {
     try super.tearDownWithError()
   }
   
+  // MARK: - Given
+  @discardableResult
+  func givenHasAnAlertAlready() -> Alert {
+    let alert = Alert("mock alert")
+    sut.postAlert(alert: alert)
+    return alert
+  }
+  
+  func givenAlreadyHasAlerts(count: Int) {
+    for i in 1...count {
+      let alert = Alert("alert \(i)")
+      sut.postAlert(alert: alert)
+    }
+    XCTAssertEqual(sut.alertCount, count)
+  }
+  
+  // MARK: - Computed Variable Tests
+  func testNextUp_withNoAlerts_isNil() {
+    XCTAssertNil(sut.nextUp)
+  }
+  
+  func testNextUp_withOneAlert_isNil() {
+    // given
+    givenAlreadyHasAlerts(count: 1)
+    // then
+    XCTAssertNil(sut.nextUp)
+  }
+  
+  func testNextUp_withTwoAlerts_isTheSecond() {
+    // given
+    givenAlreadyHasAlerts(count: 2)
+    // then
+    XCTAssertEqual(sut.nextUp?.text, "alert 2")
+  }
+  
+  func testNextUp_withThreeAlerts_isStillTheSecond() {
+    // given
+    givenAlreadyHasAlerts(count: 3)
+    // then
+    XCTAssertEqual(sut.nextUp?.text, "alert 2")
+  }
+  
+  func testNextUp_withThreeAlerts_isTheThirdAfterClearing() {
+    // given
+    givenAlreadyHasAlerts(count: 3)
+    // when
+    sut.clear(alert: sut.topAlert!)
+    // then
+    XCTAssertEqual(sut.nextUp?.text, "alert 3")
+  }
+  
+  // MARK: - Posting Notifications
   func testPostOne_generatesANotification() {
     // given
     let exp = expectation(forNotification: AlertNotification.name,
@@ -137,6 +189,26 @@ class AlertCenterTests: XCTestCase {
     let alert = Alert("to be cleared")
     sut.postAlert(alert: alert)
     // when
+    sut.clear(alert: alert)
+    // then
+    XCTAssertEqual(sut.alertCount, 0)
+  }
+  
+  func testClearingAlert_notInQueue_doesNotChangeQueue() {
+    // given
+    givenHasAnAlertAlready()
+    let alertNotInQueue = Alert("not posted")
+    // when
+    sut.clear(alert: alertNotInQueue)
+    // then
+    XCTAssertEqual(sut.alertCount, 1)
+  }
+  
+  func testClearingAlertTwice_doesNotCrash() {
+    // given
+    let alert = givenHasAnAlertAlready()
+    // when
+    sut.clear(alert: alert)
     sut.clear(alert: alert)
     // then
     XCTAssertEqual(sut.alertCount, 0)

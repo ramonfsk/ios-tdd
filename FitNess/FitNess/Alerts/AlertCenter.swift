@@ -41,6 +41,14 @@ class AlertCenter {
     return alertQueue.count
   }
   
+  var nextUp: Alert? {
+    return alertQueue.count >= 2 ? alertQueue[1] : nil
+  }
+  
+  var topAlert: Alert? {
+    return alertQueue.first
+  }
+  
   init(center: NotificationCenter = .default) {
     self.notificationCenter = center
   }
