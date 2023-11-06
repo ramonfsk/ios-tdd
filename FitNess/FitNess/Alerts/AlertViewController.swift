@@ -43,7 +43,7 @@ class AlertViewController: UIViewController {
   
   @IBOutlet weak var mainAlertView: UIView!
   @IBOutlet weak var secondaryAlertView: UIView!
-  @IBOutlet weak var alertLabel: UIView!
+  @IBOutlet weak var alertLabel: UILabel!
   
   @IBOutlet weak var mainBottom: NSLayoutConstraint!
   @IBOutlet weak var mainTrailling: NSLayoutConstraint!
@@ -53,10 +53,42 @@ class AlertViewController: UIViewController {
 
     mainAlertView.layer.borderWidth = 1
     secondaryAlertView.layer.borderWidth = 1
+    
+    AlertCenter.listenForAlerts { _ in
+      self.updateForAlert()
+    }
+  }
+  
+  func calculateViewValues() -> ViewValues {
+    let justOneAlert = AlertCenter.instance.alertCount == 1
+    let mainInset: CGFloat = justOneAlert ? 0 : 8
+    let topColor = AlertCenter.instance.topAlert?.severity.color
+    let alertText = AlertCenter.instance.topAlert?.text
+    let bottomColor = AlertCenter.instance.nextUp?.severity.color
+    
+    return ViewValues(alertText: alertText,
+                      justOneAlert: justOneAlert,
+                      topAlertInset: mainInset,
+                      topColor: topColor,
+                      bottomColor: bottomColor)
+  }
+  
+  func updateForAlert() {
+    guard AlertCenter.instance.alertCount > 0 else { return }
+    let values = calculateViewValues()
+    alertLabel.text = values.alertText
+    mainAlertView.backgroundColor = values.topColor
+    mainBottom.constant = values.topAlertInset
+    mainTrailling.constant = values.topAlertInset
+    
+    secondaryAlertView.isHidden = values.justOneAlert
+    secondaryAlertView.backgroundColor = values.bottomColor
   }
 
   @IBAction func closeAlert(_ sender: Any) {
-    
+    if let top = AlertCenter.instance.topAlert {
+      AlertCenter.instance.clear(alert: top)
+    }
   }
 }
 

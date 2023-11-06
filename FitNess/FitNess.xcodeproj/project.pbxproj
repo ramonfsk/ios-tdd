@@ -12,6 +12,7 @@
 		185CB1FE23C78CE6009F7571 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CB1FD23C78CE6009F7571 /* SceneDelegate.swift */; };
 		185CB20323C78CE6009F7571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20123C78CE6009F7571 /* Main.storyboard */; };
 		185CB20523C78CE8009F7571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20423C78CE8009F7571 /* Assets.xcassets */; };
+		2C1D450A2AF85D2700C76715 /* AlertViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D45092AF85D2700C76715 /* AlertViewControllerTests.swift */; };
 		2C4151732AEC611700326CE8 /* AlertCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4151722AEC611700326CE8 /* AlertCenterTests.swift */; };
 		2C4151762AEF056500326CE8 /* RootViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4151752AEF056500326CE8 /* RootViewControllerTests.swift */; };
 		2C4151792AEFD31A00326CE8 /* Notification+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4151782AEFD31A00326CE8 /* Notification+Tests.swift */; };
@@ -54,6 +55,7 @@
 		185CB20223C78CE6009F7571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		185CB20423C78CE8009F7571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185CB20923C78CE8009F7571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C1D45092AF85D2700C76715 /* AlertViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewControllerTests.swift; sourceTree = "<group>"; };
 		2C4151722AEC611700326CE8 /* AlertCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCenterTests.swift; sourceTree = "<group>"; };
 		2C4151752AEF056500326CE8 /* RootViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTests.swift; sourceTree = "<group>"; };
 		2C4151782AEFD31A00326CE8 /* Notification+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Tests.swift"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				2C4151722AEC611700326CE8 /* AlertCenterTests.swift */,
+				2C1D45092AF85D2700C76715 /* AlertViewControllerTests.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			files = (
 				2C80066C2AD6C196004C8BFF /* RootViewController+Tests.swift in Sources */,
 				2C841D252ACDB793000F8A52 /* DataModelTests.swift in Sources */,
+				2C1D450A2AF85D2700C76715 /* AlertViewControllerTests.swift in Sources */,
 				2C4151732AEC611700326CE8 /* AlertCenterTests.swift in Sources */,
 				2C841CED2ACC4644000F8A52 /* AppModelTests.swift in Sources */,
 				2C4151792AEFD31A00326CE8 /* Notification+Tests.swift in Sources */,
