@@ -54,6 +54,8 @@ extension Alert {
   static var milestone50Percent = Alert("Woohoo! You're halfway there!", severity: .good)
   static var milestone75Percent = Alert("Almost there, you can do it!", severity: .good)
   static var goalComplete = Alert("Amazing, you did it! Have some 🥧.", severity: .good)
+  static var nessie50Percent = Alert("Nessie catching up halfway 🦕.")
+  static var nessie90Percent = Alert("Nessie almost has you 🦕!")
 }
 
 extension Alert: Equatable {

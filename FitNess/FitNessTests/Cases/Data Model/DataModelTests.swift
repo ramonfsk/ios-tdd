@@ -237,4 +237,28 @@ final class DataModelTests: XCTestCase {
     AlertCenter.instance.notificationCenter
       .removeObserver(alertObserver)
   }
+  
+  func testWhenNessieHalfway_warningNotificationGenerated() {
+    // given
+    sut.distance = 100
+    let exp = givenExpectationForNotification(alert: .nessie50Percent)
+    // when
+    sut.updateNessie(distance: 50)
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func testNessieCatchesUp_allNotificationsSent() {
+    // given
+    sut.distance = 80
+    let expectations = [
+      givenExpectationForNotification(alert: .nessie50Percent),
+      givenExpectationForNotification(alert: .nessie90Percent),
+      givenExpectationForNotification(alert: .caughtByNessie)
+    ]
+    // when
+    sut.updateNessie(distance: 80)
+    // then
+    wait(for: expectations, timeout: 1, enforceOrder: true)
+  }
 }

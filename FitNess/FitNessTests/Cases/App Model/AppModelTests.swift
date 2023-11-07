@@ -186,4 +186,6 @@ final class AppModelTests: XCTestCase {
     wait(for: [expected], timeout: 1)
     XCTAssertEqual(observedState, .paused)
   }
+  
+  // MARK: - Pedometer
 }

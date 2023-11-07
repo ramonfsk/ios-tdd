@@ -13,6 +13,9 @@
 		185CB20323C78CE6009F7571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20123C78CE6009F7571 /* Main.storyboard */; };
 		185CB20523C78CE8009F7571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20423C78CE8009F7571 /* Assets.xcassets */; };
 		2C1D450A2AF85D2700C76715 /* AlertViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D45092AF85D2700C76715 /* AlertViewControllerTests.swift */; };
+		2C1D450D2AF9BFAD00C76715 /* Error+FitNess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D450C2AF9BFAD00C76715 /* Error+FitNess.swift */; };
+		2C1D450F2AF9C68100C76715 /* NessieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D450E2AF9C68100C76715 /* NessieTests.swift */; };
+		2C1D45112AF9C69000C76715 /* PedometerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D45102AF9C69000C76715 /* PedometerTests.swift */; };
 		2C4151732AEC611700326CE8 /* AlertCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4151722AEC611700326CE8 /* AlertCenterTests.swift */; };
 		2C4151762AEF056500326CE8 /* RootViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4151752AEF056500326CE8 /* RootViewControllerTests.swift */; };
 		2C4151792AEFD31A00326CE8 /* Notification+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4151782AEFD31A00326CE8 /* Notification+Tests.swift */; };
@@ -56,6 +59,9 @@
 		185CB20423C78CE8009F7571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185CB20923C78CE8009F7571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C1D45092AF85D2700C76715 /* AlertViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewControllerTests.swift; sourceTree = "<group>"; };
+		2C1D450C2AF9BFAD00C76715 /* Error+FitNess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+FitNess.swift"; sourceTree = "<group>"; };
+		2C1D450E2AF9C68100C76715 /* NessieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NessieTests.swift; sourceTree = "<group>"; };
+		2C1D45102AF9C69000C76715 /* PedometerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerTests.swift; sourceTree = "<group>"; };
 		2C4151722AEC611700326CE8 /* AlertCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCenterTests.swift; sourceTree = "<group>"; };
 		2C4151752AEF056500326CE8 /* RootViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTests.swift; sourceTree = "<group>"; };
 		2C4151782AEFD31A00326CE8 /* Notification+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Tests.swift"; sourceTree = "<group>"; };
@@ -123,15 +129,24 @@
 		185CB1FA23C78CE6009F7571 /* FitNess */ = {
 			isa = PBXGroup;
 			children = (
+				2C8BB2842AE9372D002DD850 /* Alerts */,
 				4CBCDEB82701427500E8992C /* App Layer */,
 				4CBCDEBF270142F400E8992C /* App Model */,
 				4CBCDEBA2701429900E8992C /* Assets & Info */,
 				2C8006622AD61C18004C8BFF /* Data Model */,
+				2C1D450B2AF9BF8700C76715 /* Helpers */,
 				4CBCDEB92701428100E8992C /* UI Layer */,
-				2C8BB2842AE9372D002DD850 /* Alerts */,
 				185CB20923C78CE8009F7571 /* Info.plist */,
 			);
 			path = FitNess;
+			sourceTree = "<group>";
+		};
+		2C1D450B2AF9BF8700C76715 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2C1D450C2AF9BFAD00C76715 /* Error+FitNess.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		2C4151712AEC60F200326CE8 /* Alerts */ = {
@@ -200,10 +215,10 @@
 		2C841CF02ACCD980000F8A52 /* Cases */ = {
 			isa = PBXGroup;
 			children = (
-				2C4151742AEF053C00326CE8 /* App Layer */,
 				2C4151712AEC60F200326CE8 /* Alerts */,
-				2C841D232ACDB766000F8A52 /* Data Model */,
+				2C4151742AEF053C00326CE8 /* App Layer */,
 				2C841CF12ACCD98B000F8A52 /* App Model */,
+				2C841D232ACDB766000F8A52 /* Data Model */,
 				2C841CF22ACCD998000F8A52 /* UI Layer */,
 			);
 			path = Cases;
@@ -229,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				2C841D242ACDB793000F8A52 /* DataModelTests.swift */,
+				2C1D450E2AF9C68100C76715 /* NessieTests.swift */,
+				2C1D45102AF9C69000C76715 /* PedometerTests.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -437,6 +454,7 @@
 				2C8BB2862AE9375F002DD850 /* Alert.swift in Sources */,
 				2C8BB28A2AE938B8002DD850 /* AlertNotification.swift in Sources */,
 				2C8BB2882AE93816002DD850 /* AlertCenter.swift in Sources */,
+				2C1D450D2AF9BFAD00C76715 /* Error+FitNess.swift in Sources */,
 				4CBCDEB32701423C00E8992C /* RootViewController.swift in Sources */,
 				2C8006642AD61C2A004C8BFF /* DataModel.swift in Sources */,
 			);
@@ -448,6 +466,7 @@
 			files = (
 				2C80066C2AD6C196004C8BFF /* RootViewController+Tests.swift in Sources */,
 				2C841D252ACDB793000F8A52 /* DataModelTests.swift in Sources */,
+				2C1D450F2AF9C68100C76715 /* NessieTests.swift in Sources */,
 				2C1D450A2AF85D2700C76715 /* AlertViewControllerTests.swift in Sources */,
 				2C4151732AEC611700326CE8 /* AlertCenterTests.swift in Sources */,
 				2C841CED2ACC4644000F8A52 /* AppModelTests.swift in Sources */,
@@ -456,6 +475,7 @@
 				2C841CEF2ACCD944000F8A52 /* StepCountControllerTests.swift in Sources */,
 				2C8BB2832AE2A9E8002DD850 /* DataModel+Tests.swift in Sources */,
 				2C4151762AEF056500326CE8 /* RootViewControllerTests.swift in Sources */,
+				2C1D45112AF9C69000C76715 /* PedometerTests.swift in Sources */,
 				2C8BB2812AE2A9D7002DD850 /* AppModel+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
