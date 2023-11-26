@@ -61,17 +61,6 @@ class AlertCenter {
                                     userInfo: [AlertNotification.Keys.alert: alert])
     notificationCenter.post(notification)
   }
-}
-
-// MARK: - Class Helpers
-extension AlertCenter {
-  class func listenForAlerts(_ callback: @escaping (AlertCenter) -> Void) {
-    instance.notificationCenter.addObserver(forName: AlertNotification.name,
-                                            object: instance,
-                                            queue: .main) { _ in
-      callback(instance)
-    }
-  }
   
   // MARK: - Alert Handling
   func clearAlerts() {
@@ -81,6 +70,17 @@ extension AlertCenter {
   func clear(alert: Alert) {
     if let index = alertQueue.firstIndex(of: alert) {
       alertQueue.remove(at: index)
+    }
+  }
+}
+
+// MARK: - Class Helpers
+extension AlertCenter {
+  class func listenForAlerts(_ callback: @escaping (AlertCenter) -> Void) {
+    instance.notificationCenter.addObserver(forName: AlertNotification.name,
+                                            object: instance,
+                                            queue: .main) { _ in
+      callback(instance)
     }
   }
 }

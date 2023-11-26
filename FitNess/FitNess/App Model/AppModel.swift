@@ -31,8 +31,17 @@
 /// THE SOFTWARE.
 
 import Foundation
+import CoreMotion
 
 internal class AppModel {
+  static var pedometerFactory: (() -> Pedometer) = {
+    #if targetEnvironment(simulator)
+    return SimulatorPedometer()
+    #else
+    return CMPedometer()
+    #endif
+  }
+  
   static let instance = AppModel()
 
   private(set) var appState: AppState = .notStarted {
@@ -43,21 +52,41 @@ internal class AppModel {
   
   let dataModel = DataModel()
   
+  var pedometer: Pedometer
+  
   var stateChangedCallback: ((AppModel) -> Void)?
+  
+  init(pedometer: Pedometer = pedometerFactory()) {
+    self.pedometer = pedometer
+  }
   
   func start() throws {
     guard dataModel.goal != nil else {
       throw AppError.goalNotSet
     }
+    guard pedometer.pedometerAvailable else {
+      AlertCenter.instance.postAlert(alert: .noPedometer)
+      return
+    }
+    guard !pedometer.permissionDeclined else {
+      AlertCenter.instance.postAlert(alert: .notAuthorized)
+      return
+    }
+    
     appState = .inProgress
+    startPedometer()
+    dataModel.nessie.startSwimming()
   }
   
   func pause() {
     appState = .paused
+    dataModel.nessie.stopSwimming()
+    pedometer.pause()
   }
   
   func restart() {
     appState = .notStarted
+    dataModel.nessie.stopSwimming()
     dataModel.restart()
   }
   
@@ -66,6 +95,9 @@ internal class AppModel {
       throw AppError.invalidState
     }
 
+    dataModel.nessie.stopSwimming()
+    pedometer.pause()
+    
     appState = .caught
   }
 
@@ -74,6 +106,34 @@ internal class AppModel {
       throw AppError.invalidState
     }
 
+    dataModel.nessie.stopSwimming()
     appState = .completed
+  }
+}
+
+// MARK: - Pedometer
+extension AppModel {
+  func startPedometer() {
+    pedometer.start(dataUpdates: handleData,
+                    eventUpdates: handleEvents)
+  }
+  
+  func handleData(data: PedometerData?, error: Error?) {
+    if let data = data {
+      dataModel.steps += data.steps
+      dataModel.distance += data.distanceTravelled
+    } else if let error = error {
+      print("error: \(error.localizedDescription)")
+      AlertCenter.instance.postAlert(alert: .dataAlert)
+    }
+  }
+  
+  func handleEvents(error: Error?) {
+    if let error = error {
+      let alert = error.is(CMErrorMotionActivityNotAuthorized)
+        ? .notAuthorized
+        : Alert(error.localizedDescription)
+      AlertCenter.instance.postAlert(alert: alert)
+    }
   }
 }

@@ -35,14 +35,18 @@ import XCTest
 
 final class StepCountControllerTests: XCTestCase {
   var sut: StepCountController!
+  var mockChaseView: ChaseViewPartialMock!
   
   override func setUpWithError() throws {
     try super.setUpWithError()
     let rootViewController = getRootViewController()
     sut = rootViewController.stepController
+    mockChaseView = ChaseViewPartialMock()
+    sut.chaseView = mockChaseView
   }
 
   override func tearDownWithError() throws {
+    AppModel.instance.dataModel.goal = nil
     AppModel.instance.restart()
     sut.updateUI()
     try super.tearDownWithError()
@@ -209,5 +213,17 @@ final class StepCountControllerTests: XCTestCase {
     // then
     let chaseView = sut.chaseView
     XCTAssertEqual(chaseView?.state, .inProgress)
+  }
+  
+  func testChaseView_whenDataSent_isUpdated() {
+    // given
+    givenInProgress()
+    // when
+    let data = MockData(steps: 500,
+                        distanceTravelled: 10)
+    (AppModel.instance.pedometer as! MockPedometer).sendData(data)
+    // then
+    XCTAssertTrue(mockChaseView.updateStateCalled)
+    XCTAssertEqual(mockChaseView.lastRunner, 0.5)
   }
 }

@@ -30,20 +30,18 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import XCTest
-import CoreMotion
-@testable import FitNess
+import Foundation
 
-final class PedometerTests: XCTestCase {
-  var sut: CMPedometer!
+protocol PedometerData {
+  var steps: Int { get }
+  var distanceTravelled: Double { get }
+}
+
+protocol Pedometer {
+  var pedometerAvailable: Bool { get }
+  var permissionDeclined: Bool { get }
   
-  override func setUpWithError() throws {
-    try super.setUpWithError()
-    sut = CMPedometer()
-  }
-  
-  override func tearDownWithError() throws {
-    sut = nil
-    try super.tearDownWithError()
-  }
+  func start(dataUpdates: @escaping (PedometerData?, Error?) -> Void,
+             eventUpdates: @escaping (Error?) -> Void)
+  func pause()
 }

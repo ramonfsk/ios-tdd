@@ -31,17 +31,42 @@
 /// THE SOFTWARE.
 
 import Foundation
-import XCTest
-@testable import FitNess
+import CoreMotion
 
-extension Notification {
-  var alert: Alert? {
-    return userInfo?[AlertNotification.Keys.alert] as? Alert
+extension CMPedometer: Pedometer {
+  var pedometerAvailable: Bool {
+    return CMPedometer.isStepCountingAvailable() &&
+      CMPedometer.isDistanceAvailable() &&
+      CMPedometer.authorizationStatus() != .restricted
+  }
+  
+  var permissionDeclined: Bool {
+    return CMPedometer.authorizationStatus() == .denied
+  }
+  
+  func start(dataUpdates: @escaping (PedometerData?, Error?) -> Void,
+             eventUpdates: @escaping (Error?) -> Void) {
+    startEventUpdates { _, error in
+      eventUpdates(error)
+    }
+    
+    startUpdates(from: Date()) { data, error in
+      dataUpdates(data, error)
+    }
+  }
+  
+  func pause() {
+    stopUpdates()
+    stopEventUpdates()
   }
 }
 
-func alertHandler(_ alert: Alert) -> XCTNSNotificationExpectation.Handler {
-  return { notification -> Bool in
-    return notification.alert == alert
+extension CMPedometerData: PedometerData {
+  var steps: Int {
+    return numberOfSteps.intValue
+  }
+  
+  var distanceTravelled: Double {
+    return distance?.doubleValue ?? 0
   }
 }

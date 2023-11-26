@@ -35,10 +35,12 @@ import XCTest
 
 final class AppModelTests: XCTestCase {
   var sut: AppModel!
+  var mockPedometer: MockPedometer!
   
   override func setUpWithError() throws {
     try super.setUpWithError()
-    sut = AppModel()
+    mockPedometer = MockPedometer()
+    sut = AppModel(pedometer: mockPedometer)
   }
   
   override func tearDownWithError() throws {
@@ -61,9 +63,14 @@ final class AppModelTests: XCTestCase {
   func givenCompleteReady() {
     sut.dataModel.setToComplete()
   }
-
+  
   func givenCaughtReady() {
     sut.dataModel.setToCaught()
+  }
+  
+  func givenPaused() {
+    givenInProgress()
+    sut.pause()
   }
   
   // MARK: - Lifecycle
@@ -188,4 +195,143 @@ final class AppModelTests: XCTestCase {
   }
   
   // MARK: - Pedometer
+  func testPedometerNotAvailable_whenStarted_doesNotStart() {
+    // given
+    givenGoalSet()
+    mockPedometer.pedometerAvailable = false
+    // when
+    try! sut.start()
+    // then
+    XCTAssertEqual(sut.appState, .notStarted)
+  }
+  
+  func testPedometerNotAvailable_whenStarted_generatesAlert() {
+    // given
+    givenGoalSet()
+    mockPedometer.pedometerAvailable = false
+    let exp = expectation(forNotification: AlertNotification.name,
+                          object: nil,
+                          handler: alertHandler(.noPedometer))
+    // when
+    try! sut.start()
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func testAppModel_whenStarted_startsPedometer() {
+    // given
+    givenGoalSet()
+    // when
+    try! sut.start()
+    // then
+    XCTAssertTrue(mockPedometer.started)
+  }
+  
+  func testPedometerNotAuthorized_whenStarted_doesNotStart() {
+    // given
+    givenGoalSet()
+    mockPedometer.permissionDeclined = true
+    // when
+    try! sut.start()
+    // then
+    XCTAssertEqual(sut.appState, .notStarted)
+  }
+  
+  func testPedometerNotAuthorized_whenStarted_generatesAlert() {
+    // given
+    givenGoalSet()
+    mockPedometer.permissionDeclined = true
+    let exp = expectation(forNotification: AlertNotification.name,
+                          object: nil,
+                          handler: alertHandler(.notAuthorized))
+    // when
+    try! sut.start()
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func testAppModel_whenDeniedAuthAfterStart_generateAlert() {
+    // given
+    givenGoalSet()
+    mockPedometer.error = MockPedometer.notAuthorizedError
+    let exp = expectation(forNotification: AlertNotification.name,
+                          object: nil,
+                          handler: alertHandler(.notAuthorized))
+    // when
+    try! sut.start()
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func testModel_whenPedometerUpdates_errorGeneratesAlert() {
+    // given
+    givenInProgress()
+    mockPedometer.error = MockPedometer.dataError
+    let exp = expectation(forNotification: AlertNotification.name,
+                          object: nil,
+                          handler: alertHandler(.dataAlert))
+    // when
+    mockPedometer.sendData(nil)
+    // then
+    wait(for: [exp], timeout: 1)
+  }
+  
+  func testModel_whenPedometerUpdates_updatesDataModel() {
+    // given
+    givenInProgress()
+    let data = MockData(steps: 100, distanceTravelled: 10)
+    // when
+    mockPedometer.sendData(data)
+    // then
+    XCTAssertEqual(sut.dataModel.steps, 100)
+    XCTAssertEqual(sut.dataModel.distance, 10)
+  }
+  
+  func testModel_whenPaused_pausesPedometer() {
+    // given
+    givenInProgress()
+    // when
+    sut.pause()
+    // then
+    XCTAssertEqual(mockPedometer.pauseCalled, 1)
+  }
+  
+  // MARK: - Nessie
+  func testNessie_whenAppModelPaused_isSleeping() {
+    // given
+    givenInProgress()
+    // when
+    sut.pause()
+    // then
+    XCTAssertTrue(sut.dataModel.nessie.isSleeping)
+  }
+  
+  func testNessie_whenAppModelRestarted_isNotSleeping() {
+    // given
+    givenPaused()
+    // when
+    try! sut.start()
+    // then
+    XCTAssertFalse(sut.dataModel.nessie.isSleeping)
+  }
+  
+  func testAppModel_whenCaught_stopNessie() {
+    // given
+    givenInProgress()
+    givenCaughtReady()
+    // when
+    sut.setToCaught()
+    // then
+    XCTAssertTrue(sut.dataModel.nessie.isSleeping)
+  }
+  
+  func testAppModel_whenComplete_stopsNessie() {
+    // given
+    givenInProgress()
+    givenCompleteReady()
+    // then
+    sut.setToComplete()
+    // then
+    XCTAssertTrue(sut.dataModel.nessie.isSleeping)
+  }
 }

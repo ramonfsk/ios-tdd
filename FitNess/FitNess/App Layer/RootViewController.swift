@@ -40,9 +40,13 @@ class RootViewController: UIViewController {
     super.viewDidLoad()
     
     reset()
-    AlertCenter.listenForAlerts { center in
-      self.alertContainer.isHidden = center.alertCount == 0
+    AlertCenter.listenForAlerts { _ in
+      self.hideShowAlert()
     }
+  }
+  
+  func hideShowAlert() {
+    self.alertContainer.isHidden = AlertCenter.instance.alertCount == 0
   }
   
   func reset() {

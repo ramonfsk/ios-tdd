@@ -31,17 +31,50 @@
 /// THE SOFTWARE.
 
 import Foundation
-import XCTest
-@testable import FitNess
 
-extension Notification {
-  var alert: Alert? {
-    return userInfo?[AlertNotification.Keys.alert] as? Alert
+class SimulatorPedometer: Pedometer {
+  struct Data: PedometerData {
+    let steps: Int
+    let distanceTravelled: Double
   }
-}
-
-func alertHandler(_ alert: Alert) -> XCTNSNotificationExpectation.Handler {
-  return { notification -> Bool in
-    return notification.alert == alert
+  
+  var pedometerAvailable: Bool = true
+  var permissionDeclined: Bool = false
+  
+  var timer: Timer?
+  var distance = 0.0
+  
+  var updateBlock: ((Error?) -> Void)?
+  var dataBlock: ((PedometerData?, Error?) -> Void)?
+  
+  func start(dataUpdates: @escaping (PedometerData?, Error?) -> Void, 
+             eventUpdates: @escaping (Error?) -> Void) {
+    updateBlock = eventUpdates
+    dataBlock = dataUpdates
+    
+    timer = Timer(timeInterval: 1,
+                  repeats: true) { _ in
+      self.distance += 1
+      print("update distance: \(self.distance)")
+      let data = Data(steps: 10,
+                      distanceTravelled: self.distance)
+      self.dataBlock?(data, nil)
+    }
+    
+    RunLoop.main.add(timer!,
+                     forMode: .default)
+    
+    updateBlock?(nil)
+  }
+  
+  func pause() {
+    stop()
+  }
+  
+  func stop() {
+    timer?.invalidate()
+    updateBlock?(nil)
+    updateBlock = nil
+    dataBlock = nil
   }
 }

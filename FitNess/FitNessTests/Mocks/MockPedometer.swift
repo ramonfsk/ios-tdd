@@ -31,17 +31,42 @@
 /// THE SOFTWARE.
 
 import Foundation
-import XCTest
+import CoreMotion
 @testable import FitNess
 
-extension Notification {
-  var alert: Alert? {
-    return userInfo?[AlertNotification.Keys.alert] as? Alert
+class MockPedometer: Pedometer {
+  private(set) var started: Bool = false
+  private(set) var pauseCalled: Int = 0
+  var pedometerAvailable: Bool = true
+  var permissionDeclined: Bool = false
+  
+  var error: Error?
+  var updateBlock: ((Error?) -> Void)?
+  var dataBlock: ((PedometerData?, Error?) -> Void)?
+  
+  func start(dataUpdates: @escaping (PedometerData?, Error?) -> Void,
+             eventUpdates: @escaping (Error?) -> Void) {
+    started = true
+    updateBlock = eventUpdates
+    dataBlock = dataUpdates
+    DispatchQueue.global(qos: .default).async {
+      self.updateBlock?(self.error)
+    }
   }
-}
-
-func alertHandler(_ alert: Alert) -> XCTNSNotificationExpectation.Handler {
-  return { notification -> Bool in
-    return notification.alert == alert
+  
+  func pause() {
+    pauseCalled += 1
   }
+  
+  func sendData(_ data: PedometerData?) {
+    dataBlock?(data, error)
+  }
+  
+  static let notAuthorizedError = NSError(domain: CMErrorDomain, 
+                                          code: Int(CMErrorMotionActivityNotAuthorized.rawValue),
+                                          userInfo: nil)
+  
+  static let dataError = NSError(domain: CMErrorDomain,
+                                 code: Int(CMErrorUnknown.rawValue),
+                                 userInfo: nil)
 }

@@ -88,6 +88,7 @@ class AlertViewController: UIViewController {
   @IBAction func closeAlert(_ sender: Any) {
     if let top = AlertCenter.instance.topAlert {
       AlertCenter.instance.clear(alert: top)
+      updateForAlert()
     }
   }
 }

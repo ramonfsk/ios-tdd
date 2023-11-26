@@ -46,6 +46,7 @@ class Alert {
 }
 
 extension Alert {
+  static var dataAlert = Alert("Error reading pedometer.")
   static var caughtByNessie = Alert("Caught By Nessie!")
   static var reachedGoal = Alert("You reached your goal!", severity: .good)
   static var noPedometer = Alert("Unable to load pedometer")

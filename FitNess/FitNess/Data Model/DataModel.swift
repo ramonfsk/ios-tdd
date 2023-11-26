@@ -33,6 +33,19 @@
 import Foundation
 
 class DataModel {
+  static let UpdateNotification = NSNotification.Name("DataModelUpdated")
+  
+  // MARK: - Alerts
+  var sentAlerts: [Alert] = []
+  
+  // MARK: - Goal Calculation
+  var goal: Int?
+  var steps: Int = 0 {
+    didSet {
+      updateForSteps()
+    }
+  }
+  
   var goalReached: Bool {
     if let goal = goal,
        steps >= goal, !caught {
@@ -40,14 +53,6 @@ class DataModel {
     }
     return false
   }
-  var goal: Int?
-  var steps: Int = 0 {
-    didSet {
-      updateForSteps()
-    }
-  }
-  // MARK: - Alerts
-  var sentAlerts: [Alert] = []
   
   // MARK: - Nessie
   let nessie = Nessie()
@@ -100,5 +105,9 @@ class DataModel {
     checkThreshold(percent: 0.50, alert: .milestone50Percent)
     checkThreshold(percent: 0.75, alert: .milestone75Percent)
     checkThreshold(percent: 1.00, alert: .goalComplete)
+    
+    NotificationCenter.default.post(
+      name: DataModel.UpdateNotification,
+      object: self)
   }
 }
