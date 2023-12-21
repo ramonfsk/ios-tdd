@@ -33,7 +33,6 @@
 import UIKit
 
 class ListingsViewController: UIViewController {
-  
   // MARK: - Outlets
   @IBOutlet var tableView: UITableView! {
     didSet {
@@ -43,7 +42,9 @@ class ListingsViewController: UIViewController {
   }
   
   // MARK: - Instance Properties
+  var networkClient: DogPatchService = DogPatchClient.shared
   var viewModels: [DogViewModel] = []
+  var dataTask: URLSessionTaskProtocol?
   
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -59,20 +60,26 @@ class ListingsViewController: UIViewController {
     refreshControl.attributedTitle = NSAttributedString(string: "Loading...")
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  override func viewIsAppearing(_ animated: Bool) {
+    super.viewIsAppearing(animated)
     refreshData()
   }
   
   // MARK: - Refresh
   @objc func refreshData() {
-    // TODO: - Write this
+    guard dataTask == nil else { return }
+    tableView.refreshControl?.beginRefreshing()
+    dataTask = networkClient.getDogs() { dogs, error in
+      self.dataTask = nil
+      self.viewModels = dogs?.map { DogViewModel(dog: $0) } ?? []
+      self.tableView.refreshControl?.endRefreshing()
+      self.tableView.reloadData()
+    }
   }
 }
 
 // MARK: - UITableViewDataSource
 extension ListingsViewController: UITableViewDataSource {
-  
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
     guard !tableView.refreshControl!.isRefreshing  else {
@@ -103,7 +110,6 @@ extension ListingsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ListingsViewController: UITableViewDelegate {
-  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
   }

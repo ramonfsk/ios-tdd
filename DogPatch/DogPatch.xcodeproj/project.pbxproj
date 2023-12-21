@@ -12,6 +12,7 @@
 		2C02A3BE2B1684A600E7F76F /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A3BD2B1684A600E7F76F /* URLSessionProtocol.swift */; };
 		2C02A3C02B16BA7100E7F76F /* URLSessionProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A3BF2B16BA7100E7F76F /* URLSessionProtocolTests.swift */; };
 		2C02A3C32B17637A00E7F76F /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A3C22B17637A00E7F76F /* MockURLSession.swift */; };
+		2C02A42D2B24D16D00E7F76F /* MockDogPatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A42C2B24D16D00E7F76F /* MockDogPatchService.swift */; };
 		420A276322E4859A00ECCA13 /* GET_Dogs_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = 420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */; };
 		420A276522E485C000ECCA13 /* Data+JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A276422E485C000ECCA13 /* Data+JSONFile.swift */; };
 		4213CCA0221738DF0047BA3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213CC9F221738DF0047BA3D /* AppDelegate.swift */; };
@@ -75,6 +76,7 @@
 		2C02A3BD2B1684A600E7F76F /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		2C02A3BF2B16BA7100E7F76F /* URLSessionProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocolTests.swift; sourceTree = "<group>"; };
 		2C02A3C22B17637A00E7F76F /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		2C02A42C2B24D16D00E7F76F /* MockDogPatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogPatchService.swift; sourceTree = "<group>"; };
 		420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GET_Dogs_Response.json; sourceTree = "<group>"; };
 		420A276422E485C000ECCA13 /* Data+JSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+JSONFile.swift"; sourceTree = "<group>"; };
 		4213CC9C221738DF0047BA3D /* DogPatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogPatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				2C02A3C22B17637A00E7F76F /* MockURLSession.swift */,
+				2C02A42C2B24D16D00E7F76F /* MockDogPatchService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				42335BF222BD179600E21A72 /* UIView+ApplyShaddowTests.swift in Sources */,
 				9581B4B72316F44400A78286 /* LogoNavigationItemTests.swift in Sources */,
 				424E577A22E0C47A00C96D45 /* XCTAssertEqualToAny.swift in Sources */,
+				2C02A42D2B24D16D00E7F76F /* MockDogPatchService.swift in Sources */,
 				42A255A522BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift in Sources */,
 				427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */,
 				9581B4B92316F48E00A78286 /* DecodableTestCase.swift in Sources */,

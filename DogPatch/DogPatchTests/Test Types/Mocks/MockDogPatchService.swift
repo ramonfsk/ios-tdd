@@ -26,50 +26,22 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-@testable import DogPatch
 import Foundation
+@testable import DogPatch
 
 // 1
-class MockURLSession: URLSessionProtocol {
-  var queue: DispatchQueue? = nil
-  
-  func givenDispatchQueue() {
-    queue = DispatchQueue(label: "com.DogPatchTests.MockSession")
-  }
-  
-  func makeDataTask(with url: URL,
-                    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> DogPatch.URLSessionTaskProtocol {
-    return MockURLSessionTask(url: url,
-                              completionHandler: completionHandler, 
-                              queue: queue)
-  }
-}
-
-// 2
-class MockURLSessionTask: URLSessionTaskProtocol {
-  var url: URL
-  var completionHandler: (Data?, URLResponse?, Error?) -> Void
-  
-  var calledResume = false
-  
-  init(url: URL,
-       completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
-       queue: DispatchQueue?) {
-    if let queue = queue {
-      self.completionHandler = { data, response, error in
-        queue.async {
-          completionHandler(data, response, error)
-        }
-      }
-    } else {
-      self.completionHandler = completionHandler
-    }
-    
-    self.url = url
-  }
-  
+class MockDogPatchService: DogPatchService {
+  // 2
+  var baseURL = URL(string: "https://example.com/api/")!
+  var getDogsCallCount = 0
+  var getDogsCompletion: (([Dog]?, Error?) -> Void)!
+  lazy var getDogsDataTask = MockURLSessionTask(url: URL(string: "dogs", relativeTo: baseURL)!,
+                                                completionHandler: { _, _, _ in},
+                                                queue: nil)
   // 3
-  func resume() {
-    calledResume = true
+  func getDogs(completion: @escaping ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {
+    getDogsCallCount += 1
+    getDogsCompletion = completion
+    return getDogsDataTask
   }
 }
