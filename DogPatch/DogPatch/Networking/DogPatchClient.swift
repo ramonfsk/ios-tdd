@@ -33,7 +33,13 @@ protocol DogPatchService {
 }
 
 class DogPatchClient {
-  static let shared = DogPatchClient(baseURL: URL(string: "https://dogpatchserver.herokuapp.com/api/v1/")!,
+#if DEBUG
+  static let dogPatchServerBaseURL = "http://localhost:3001"
+#else
+  static let dogPatchServerBaseURL = "https://dogpatchserver.herokuapp.com"
+#endif
+  
+  static let shared = DogPatchClient(baseURL: URL(string: "\(dogPatchServerBaseURL)/api/v1/")!,
                                      session: URLSession.shared,
                                      responseQueue: .main)
   

@@ -1,0 +1,80 @@
+{
+  "uuid": "0c09916d-ce87-4c6e-840f-4e00aadbb2ad",
+  "lastMigration": 32,
+  "name": "DogPatchServer",
+  "endpointPrefix": "api/v1",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "5d9a4d0a-9e97-42f4-a376-568970de6c31",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dogs",
+      "responses": [
+        {
+          "uuid": "8675cd81-5ee1-4f78-b392-3dd409fdc531",
+          "body": "[\n  {\n    \"birthday\": 553082271,\n    \"created\": 584359071,\n    \"gender\": \"male\",\n    \"breederRating\": 4.5,\n    \"id\": \"504E7CD2-2138-41FA-8115-D025A490759F\",\n    \"about\": \"Jack is a chill, fun-loving kinda dog. He's the kinda dog that likes piña coladas and dancin' in the rain.\",\n    \"breed\": \"German Shepherd\",\n    \"sellerID\": \"6C739AF2-34FC-41AA-B456-D6C2812E58D7\",\n    \"name\": \"Jack\",\n    \"imageURL\": \"https://live.staticflickr.com/65535/48259180871_271e9cae35_m.png\",\n    \"cost\": 399.99\n  },\n  {\n    \"birthday\": 563591967,\n    \"created\": 584531871,\n    \"gender\": \"male\",\n    \"breederRating\": 4.5,\n    \"id\": \"8059C8E2-981C-491B-BA41-4F0CF53CBCD9\",\n    \"about\": \"Snowball is a go-getter kind of dog. You'll be very happy with him if you like energetic dogs. He enjoys chasing sticks, balls, frisbees, really anything that you throw! If you get Snowball, and you manage to find my keys, please send those back.\",\n    \"breed\": \"Lab mix\",\n    \"sellerID\": \"6C739AF2-34FC-41AA-B456-D6C2812E58D7\",\n    \"name\": \"Snowball\",\n    \"imageURL\": \"https://live.staticflickr.com/65535/48259249007_0e59e44318_m.png\",\n    \"cost\": 199.99\n  },\n  {\n    \"birthday\": 576733407,\n    \"created\": 584596671,\n    \"gender\": \"male\",\n    \"breederRating\": 4.5,\n    \"id\": \"6D403D60-7EC1-4D6E-8495-BA8FF41A7BDE\",\n    \"about\": \"Joey is a pure-bred Doberman Pinscher. By which I mean, he was feed bread, and his father a Doberman! Be careful, his father is huge...! Joey is best for someone with a lot of outdoor space.\",\n    \"breed\": \"Doberman Mix\",\n    \"sellerID\": \"6C739AF2-34FC-41AA-B456-D6C2812E58D7\",\n    \"name\": \"Joey\",\n    \"imageURL\": \"https://live.staticflickr.com/65535/48259249117_2b761a6f6f_m.png\",\n    \"cost\": 399.99\n  },\n  {\n    \"birthday\": 568848543,\n    \"created\": 584603871,\n    \"gender\": \"female\",\n    \"breederRating\": 5,\n    \"id\": \"A6634CB5-3E3A-4706-A3F4-4896CD7FA6CF\",\n    \"about\": \"Lulu’s parents are pure-bred Poodles, and her mother is the 2018 best-in-show Poodle-Doodle winner. Her father is a good-for-nothing, lazy dog. Fortunately, Lulu takes after her mother, most of the time.\",\n    \"breed\": \"Poodle\",\n    \"sellerID\": \"3E590D1B-73B5-45A6-9806-4D52A70DEC22\",\n    \"name\": \"Lulu\",\n    \"imageURL\": \"https://live.staticflickr.com/65535/48259180361_e385cbaa94_m.png\",\n    \"cost\": 225.99\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "5d9a4d0a-9e97-42f4-a376-568970de6c31"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
