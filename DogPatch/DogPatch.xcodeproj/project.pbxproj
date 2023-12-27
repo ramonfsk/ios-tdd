@@ -13,6 +13,9 @@
 		2C02A3C02B16BA7100E7F76F /* URLSessionProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A3BF2B16BA7100E7F76F /* URLSessionProtocolTests.swift */; };
 		2C02A3C32B17637A00E7F76F /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A3C22B17637A00E7F76F /* MockURLSession.swift */; };
 		2C02A42D2B24D16D00E7F76F /* MockDogPatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02A42C2B24D16D00E7F76F /* MockDogPatchService.swift */; };
+		2C1BD40B2B3BA10100B070D0 /* MockImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BD40A2B3BA10100B070D0 /* MockImageService.swift */; };
+		2CF619172B34FDBF002110C0 /* ImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF619162B34FDBF002110C0 /* ImageClient.swift */; };
+		2CF619192B34FF09002110C0 /* ImageClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF619182B34FF09002110C0 /* ImageClientTests.swift */; };
 		420A276322E4859A00ECCA13 /* GET_Dogs_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = 420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */; };
 		420A276522E485C000ECCA13 /* Data+JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A276422E485C000ECCA13 /* Data+JSONFile.swift */; };
 		4213CCA0221738DF0047BA3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213CC9F221738DF0047BA3D /* AppDelegate.swift */; };
@@ -77,6 +80,9 @@
 		2C02A3BF2B16BA7100E7F76F /* URLSessionProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocolTests.swift; sourceTree = "<group>"; };
 		2C02A3C22B17637A00E7F76F /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		2C02A42C2B24D16D00E7F76F /* MockDogPatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogPatchService.swift; sourceTree = "<group>"; };
+		2C1BD40A2B3BA10100B070D0 /* MockImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageService.swift; sourceTree = "<group>"; };
+		2CF619162B34FDBF002110C0 /* ImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClient.swift; sourceTree = "<group>"; };
+		2CF619182B34FF09002110C0 /* ImageClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClientTests.swift; sourceTree = "<group>"; };
 		420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GET_Dogs_Response.json; sourceTree = "<group>"; };
 		420A276422E485C000ECCA13 /* Data+JSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+JSONFile.swift"; sourceTree = "<group>"; };
 		4213CC9C221738DF0047BA3D /* DogPatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogPatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +157,7 @@
 			children = (
 				2C02A3B72B167EE500E7F76F /* DogPatchClientTests.swift */,
 				2C02A3BF2B16BA7100E7F76F /* URLSessionProtocolTests.swift */,
+				2CF619182B34FF09002110C0 /* ImageClientTests.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 			children = (
 				2C02A3BB2B167FB700E7F76F /* DogPatchClient.swift */,
 				2C02A3BD2B1684A600E7F76F /* URLSessionProtocol.swift */,
+				2CF619162B34FDBF002110C0 /* ImageClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -169,6 +177,7 @@
 			children = (
 				2C02A3C22B17637A00E7F76F /* MockURLSession.swift */,
 				2C02A42C2B24D16D00E7F76F /* MockDogPatchService.swift */,
+				2C1BD40A2B3BA10100B070D0 /* MockImageService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -624,6 +633,7 @@
 				9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */,
 				4270357322B6FA98001080B1 /* ListingCell.swift in Sources */,
 				42D837BE22B6DAD50036C5DD /* User.swift in Sources */,
+				2CF619172B34FDBF002110C0 /* ImageClient.swift in Sources */,
 				42335BEF22BD166800E21A72 /* UIView+ApplyShadow.swift in Sources */,
 				9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */,
 				2C02A3BE2B1684A600E7F76F /* URLSessionProtocol.swift in Sources */,
@@ -648,8 +658,10 @@
 				9581B4B72316F44400A78286 /* LogoNavigationItemTests.swift in Sources */,
 				424E577A22E0C47A00C96D45 /* XCTAssertEqualToAny.swift in Sources */,
 				2C02A42D2B24D16D00E7F76F /* MockDogPatchService.swift in Sources */,
+				2CF619192B34FF09002110C0 /* ImageClientTests.swift in Sources */,
 				42A255A522BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift in Sources */,
 				427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */,
+				2C1BD40B2B3BA10100B070D0 /* MockImageService.swift in Sources */,
 				9581B4B92316F48E00A78286 /* DecodableTestCase.swift in Sources */,
 				2C02A3C32B17637A00E7F76F /* MockURLSession.swift in Sources */,
 				4233782B270C662900852BD3 /* TestView.swift in Sources */,

@@ -43,6 +43,7 @@ class ListingsViewController: UIViewController {
   
   // MARK: - Instance Properties
   var networkClient: DogPatchService = DogPatchClient.shared
+  var imageClient: ImageService = ImageClient.shared
   var viewModels: [DogViewModel] = []
   var dataTask: URLSessionTaskProtocol?
   
@@ -104,6 +105,9 @@ extension ListingsViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: ListingTableViewCell.identifier) as! ListingTableViewCell
     let viewModel = viewModels[indexPath.row]
     viewModel.configure(cell)
+    imageClient.setImage(on: cell.dogImageView,
+                         fromURL: viewModel.imageURL,
+                         withPlaceholder: UIImage(named: "image_placeholder"))
     return cell
   }
 }

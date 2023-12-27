@@ -51,6 +51,7 @@ class MockURLSessionTask: URLSessionTaskProtocol {
   var completionHandler: (Data?, URLResponse?, Error?) -> Void
   
   var calledResume = false
+  var calledCancel = false
   
   init(url: URL,
        completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
@@ -71,5 +72,9 @@ class MockURLSessionTask: URLSessionTaskProtocol {
   // 3
   func resume() {
     calledResume = true
+  }
+  
+  func cancel() {
+    calledCancel = true
   }
 }

@@ -26,24 +26,26 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import UIKit
+@testable import DogPatch
 
-protocol URLSessionTaskProtocol: AnyObject {
-  func resume()
-  func cancel()
-}
-
-protocol URLSessionProtocol: AnyObject {
-  func makeDataTask(with url: URL,
-                    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTaskProtocol
-}
-
-extension URLSessionTask: URLSessionTaskProtocol { }
-
-extension URLSession: URLSessionProtocol {
-  func makeDataTask(with url: URL, 
-                    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTaskProtocol {
-    return dataTask(with: url,
-                    completionHandler: completionHandler)
+class MockImageService: ImageService {
+  func downloadImage(fromURL url: URL, 
+                     completion: @escaping (UIImage?, Error?) -> Void) -> DogPatch.URLSessionTaskProtocol? {
+    return nil
+  }
+  
+  var setImageCallCount = 0
+  var receivedImageView: UIImageView!
+  var receivedURL: URL!
+  var receivedPlaceholder: UIImage!
+  
+  func setImage(on imageView: UIImageView, 
+                fromURL url: URL,
+                withPlaceholder placeholder: UIImage?) {
+    setImageCallCount += 1
+    receivedImageView = imageView
+    receivedURL = url
+    receivedPlaceholder = placeholder
   }
 }
