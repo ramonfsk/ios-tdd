@@ -1,15 +1,15 @@
-/// Copyright (c) 2021 Razeware LLC
-///
+/// Copyright (c) 2024 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -30,23 +30,64 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import XCTest
+@testable import MyBiz
 
-struct Employee: Codable {
-  let id: String
-  let givenName: String
-  let familyName: String
-  let location: String
-  let manager: String?
-  let directReports: [String]
-  let birthday: String?
-  static let birthdayFormat = "MM-dd-yyyy"
+class CalendarModelTests: XCTestCase {
+  var mockAPI: MockAPI!
+  var sut: CalendarModel!
+  
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    mockAPI = MockAPI()
+    sut = CalendarModel(api: mockAPI)
+  }
+  
+  override func tearDownWithError() throws {
+    sut = nil
+    mockAPI = nil
+    try super.tearDownWithError()
+  }
 
-  var displayName: String {
-    var components = PersonNameComponents()
-    components.familyName = familyName
-    components.givenName = givenName
-    let nameFormatter = PersonNameComponentsFormatter()
-    return nameFormatter.string(from: components)
+  func testModel_whenGivenEmployeeList_generatesBirthdayEvents() {
+    // given
+    let employees = mockEmployees()
+    // when
+    let events = sut.convertBirthdays(employees)
+    // then
+    let expectedEvents = mockBirthdayEvents()
+    XCTAssertEqual(events, expectedEvents)
+  }
+  
+  func testModel_whenBirthdaysLoaded_getsBirthdayEvents() {
+    // given
+    mockAPI.mockEmployees = mockEmployees()
+    let exp = expectation(description: "birthdays loaded")
+    // when
+    var loadedEvents: [Event]?
+    sut.getBirthdays { result in
+      loadedEvents = try? result.get()
+      exp.fulfill()
+    }
+    // then
+    wait(for: [exp], timeout: 1)
+    let expectedEvents = mockBirthdayEvents()
+    XCTAssertEqual(loadedEvents, expectedEvents)
+  }
+  
+  func testModel_whenEventsLoaded_getsEvents() {
+    // given
+    let expectedEvents = mockEvents()
+    mockAPI.mockEvents = expectedEvents
+    let exp = expectation(description: "events loeaded")
+    // when
+    var loadedEvents: [Event]?
+    sut.getEvents { result in
+      loadedEvents = try? result.get()
+      exp.fulfill()
+    }
+    // then
+    wait(for: [exp], timeout: 1)
+    XCTAssertEqual(loadedEvents, expectedEvents)
   }
 }

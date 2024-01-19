@@ -35,18 +35,31 @@ import UIKit
 class CalendarViewController: UIViewController {
   @IBOutlet weak var calendarView: JTAppleCalendarView!
 
-  var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
+  var api: API = UIApplication.appDelegate.api
   var events: [Event] = []
+  var model: CalendarModel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     calendarView.scrollingMode = .stopAtEachCalendarFrame
+    model = CalendarModel(api: api)
   }
 
+  func loadEvents() {
+    model.getAll { [weak self] result in
+      switch result {
+      case .success(let events):
+        self?.events = events
+        self?.calendarView.reloadData()
+      case .failure(let error):
+        self?.showAlert(title: "Could not load events", subtitle: error.localizedDescription)
+      }
+    }
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    api.delegate = self
-    api.getEvents()
+    loadEvents()
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,30 +71,6 @@ class CalendarViewController: UIViewController {
 
     let daysEvents = events.filter { Calendar.current.isDate(state.date, equalTo: $0.date, toGranularity: .day) }
     destination.events = daysEvents
-  }
-}
-
-extension CalendarViewController: APIDelegate {
-  func announcementsFailed(error: Error) {}
-  func announcementsLoaded(announcements: [Announcement]) {}
-  func productsLoaded(products: [Product]) {}
-  func productsFailed(error: Error) {}
-  func purchasesLoaded(purchases: [PurchaseOrder]) {}
-  func purchasesFailed(error: Error) {}
-  func orgLoaded(org: [Employee]) {}
-  func orgFailed(error: Error) {}
-  func loginFailed(error: Error) {}
-  func loginSucceeded(userId: String) {}
-  func userLoaded(user: UserInfo) {}
-  func userFailed(error: Error) {}
-
-  func eventsLoaded(events: [Event]) {
-    self.events = events
-    calendarView.reloadData()
-  }
-
-  func eventsFailed(error: Error) {
-    showAlert(title: "Could not load events", subtitle: error.localizedDescription)
   }
 }
 
