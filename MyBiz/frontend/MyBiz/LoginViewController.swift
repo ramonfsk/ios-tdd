@@ -37,13 +37,13 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var signInButton: UIButton!
 
-  var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
+  var api: API!
   let skin: Skin = .login
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    api.delegate = self
+    api?.delegate = self
     Styler.shared.style(background: view, buttons: [signInButton], with: skin)
   }
 
@@ -74,13 +74,17 @@ extension LoginViewController: APIDelegate {
   func userFailed(error: Error) {}
 
   func loginFailed(error: Error) {
-    showAlert(title: "Login Failed", subtitle: error.localizedDescription, type: .login, skin: .loginAlert)
+    let retryAction = ErrorViewController.SecondaryAction(title: "Try Again") { [weak self] in
+      if let self = self {
+        self.signIn(self)
+      }
+    }
+    
+    showAlert(title: "Login Failed",
+              subtitle: error.localizedDescription,
+              action: retryAction,
+              skin: .loginAlert)
   }
 
-  func loginSucceeded(userId: String) {
-    UIApplication.appDelegate.userId = userId
-    if let tabController = storyboard?.instantiateViewController(withIdentifier: "tabController") {
-      UIApplication.appDelegate.rootController = tabController
-    }
-  }
+  func loginSucceeded(userId: String) {}
 }

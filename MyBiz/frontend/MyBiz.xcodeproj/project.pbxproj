@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		180DC61523C78D9800486B1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180DC61423C78D9800486B1A /* LaunchScreen.storyboard */; };
 		185CB20523C78CE8009F7571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20423C78CE8009F7571 /* Assets.xcassets */; };
+		2C1A49122BB0BF47000418DD /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A49112BB0BF47000418DD /* APITests.swift */; };
+		2C1A49142BB0CBA3000418DD /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A49132BB0CBA3000418DD /* ErrorViewControllerTests.swift */; };
+		2C1A49162BB0CE4F000418DD /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A49152BB0CE4F000418DD /* ErrorViewControllerTests.swift */; };
+		2C1A49182BB1A488000418DD /* SpyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A49172BB1A488000418DD /* SpyAPI.swift */; };
+		2C1A491A2BB1C24E000418DD /* ValidatorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A49192BB1C24E000418DD /* ValidatorsTests.swift */; };
 		2C1BD41B2B48DB6A00B070D0 /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BD41A2B48DB6A00B070D0 /* CalendarViewControllerTests.swift */; };
 		2C1BD41F2B589BD800B070D0 /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BD41E2B589BD800B070D0 /* MockAPI.swift */; };
 		2C1BD42F2B589FD200B070D0 /* CalendarModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BD42E2B589FD200B070D0 /* CalendarModelTests.swift */; };
 		2C1BD4322B58A09500B070D0 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BD4312B58A09500B070D0 /* CalendarModel.swift */; };
+		2C5B410E2B86194F00E83872 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B410D2B86194F00E83872 /* LoginViewControllerTests.swift */; };
 		2C5EED9E2B59501500F1A76A /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BD41E2B589BD800B070D0 /* MockAPI.swift */; };
 		2C5EEDA02B5A890B00F1A76A /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5EED9F2B5A890B00F1A76A /* CalendarViewControllerTests.swift */; };
 		4C68962827335B1D00337089 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F227335B1B00337089 /* CalendarViewController.swift */; };
@@ -95,12 +101,18 @@
 		185CB1F823C78CE6009F7571 /* MyBiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185CB20423C78CE8009F7571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185CB20923C78CE8009F7571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C1A49112BB0BF47000418DD /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		2C1A49132BB0CBA3000418DD /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
+		2C1A49152BB0CE4F000418DD /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
+		2C1A49172BB1A488000418DD /* SpyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyAPI.swift; sourceTree = "<group>"; };
+		2C1A49192BB1C24E000418DD /* ValidatorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsTests.swift; sourceTree = "<group>"; };
 		2C1BD4102B48DAB100B070D0 /* CharacterizationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacterizationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1BD41A2B48DB6A00B070D0 /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
 		2C1BD41E2B589BD800B070D0 /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		2C1BD4242B589FA100B070D0 /* MyBizTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyBizTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1BD42E2B589FD200B070D0 /* CalendarModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModelTests.swift; sourceTree = "<group>"; };
 		2C1BD4312B58A09500B070D0 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		2C5B410D2B86194F00E83872 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		2C5EED9F2B5A890B00F1A76A /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
 		4C6895F227335B1B00337089 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4C6895F327335B1B00337089 /* Skin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skin.swift; sourceTree = "<group>"; };
@@ -269,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				2C1BD41A2B48DB6A00B070D0 /* CalendarViewControllerTests.swift */,
+				2C5B410D2B86194F00E83872 /* LoginViewControllerTests.swift */,
+				2C1A49132BB0CBA3000418DD /* ErrorViewControllerTests.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -277,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				2C1BD41E2B589BD800B070D0 /* MockAPI.swift */,
+				2C1A49172BB1A488000418DD /* SpyAPI.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -294,6 +309,9 @@
 			children = (
 				2C1BD42E2B589FD200B070D0 /* CalendarModelTests.swift */,
 				2C5EED9F2B5A890B00F1A76A /* CalendarViewControllerTests.swift */,
+				2C1A49112BB0BF47000418DD /* APITests.swift */,
+				2C1A49152BB0CE4F000418DD /* ErrorViewControllerTests.swift */,
+				2C1A49192BB1C24E000418DD /* ValidatorsTests.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -551,8 +569,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C5B410E2B86194F00E83872 /* LoginViewControllerTests.swift in Sources */,
+				2C1A49142BB0CBA3000418DD /* ErrorViewControllerTests.swift in Sources */,
 				2C1BD41F2B589BD800B070D0 /* MockAPI.swift in Sources */,
 				2C1BD41B2B48DB6A00B070D0 /* CalendarViewControllerTests.swift in Sources */,
+				2C1A49182BB1A488000418DD /* SpyAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +582,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5EED9E2B59501500F1A76A /* MockAPI.swift in Sources */,
+				2C1A49162BB0CE4F000418DD /* ErrorViewControllerTests.swift in Sources */,
 				2C5EEDA02B5A890B00F1A76A /* CalendarViewControllerTests.swift in Sources */,
+				2C1A49122BB0BF47000418DD /* APITests.swift in Sources */,
+				2C1A491A2BB1C24E000418DD /* ValidatorsTests.swift in Sources */,
 				2C1BD42F2B589FD200B070D0 /* CalendarModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,6 +727,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyBiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,6 +747,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyBiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -746,7 +772,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fsk.CharacterizationTests;
@@ -773,7 +799,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fsk.CharacterizationTests;
@@ -798,7 +824,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fsk.MyBizTests;
@@ -825,7 +851,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fsk.MyBizTests;

@@ -33,6 +33,13 @@
 import Foundation
 import UIKit
 
+let userLoggedInNotification = Notification.Name("user logged in")
+let userLoggedOutNotification = Notification.Name("user logged out")
+
+enum UserNotificationKey: String {
+  case userId
+}
+
 protocol APIDelegate: AnyObject {
   func loginFailed(error: Error)
   func loginSucceeded(userId: String)
@@ -51,13 +58,14 @@ protocol APIDelegate: AnyObject {
 }
 
 class API {
-  let server = AppDelegate.configuration.server
+  let server: String
   let session: URLSession
 
   weak var delegate: APIDelegate?
   var token: Token?
 
-  init() {
+  init(server: String) {
+    self.server = server
     session = URLSession(configuration: .default)
   }
 
@@ -101,6 +109,10 @@ class API {
   func handleToken(token: Token) {
     self.token = token
     Logger.logDebug("user \(token.user.id)")
+    let note = Notification(name: userLoggedInNotification,
+                            object: nil,
+                            userInfo: [UserNotificationKey.userId: token.user.id.uuidString])
+    NotificationCenter.default.post(note)
     DispatchQueue.main.async {
       self.delegate?.loginSucceeded(userId: token.user.id.uuidString)
     }
@@ -109,7 +121,8 @@ class API {
   func logout() {
     token = nil
     delegate = nil
-    UIApplication.appDelegate.showLogin()
+    let note = Notification(name: userLoggedOutNotification)
+    NotificationCenter.default.post(note)
   }
 
   //swiftlint:disable identifier_name

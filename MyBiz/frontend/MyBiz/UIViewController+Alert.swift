@@ -34,13 +34,16 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-  func showAlert(title: String, subtitle: String?, type: ErrorViewController.AlertType = .general, skin: Skin? = nil) {
+  func showAlert(title: String,
+                 subtitle: String?,
+                 action: ErrorViewController.SecondaryAction? = nil,
+                 skin: Skin? = nil) {
     let alertController = UIStoryboard(name: "Main", bundle: nil)
       .instantiateViewController(withIdentifier: "error") as! ErrorViewController
     alertController.set(title: title, subtitle: subtitle)
     alertController.modalPresentationStyle = .overCurrentContext
     alertController.modalTransitionStyle = .crossDissolve
-    alertController.type = type
+    alertController.secondaryAction = action
     alertController.skin = skin
     UIApplication.appDelegate.rootController?.present(alertController, animated: true)
   }
